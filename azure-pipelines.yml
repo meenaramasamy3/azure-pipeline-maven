@@ -27,6 +27,6 @@ steps:
       options: |
         -Xmx3072m  # Optional: Adjust memory if needed
         -DskipTests
-        -DaltDeploymentRepository=azure-artifacts::default::https://pkgs.dev.azure.com/meenar34/Demo/_artifacts/feed/my-artifacts-feed/maven/v1
+        -DaltDeploymentRepository=azure-artifacts::default::https://pkgs.dev.azure.com/https://pkgs.dev.azure.com/meenar34/Demo/_packaging/my-artifacts-feed/maven/v1
         -Dusername=meena
         -Dpassword=$(System.AccessToken)  # System.AccessToken is used for authentication in Azure Pipelines
