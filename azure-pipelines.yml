@@ -25,8 +25,8 @@ steps:
       mavenPomFile: 'pom.xml'  # Path to your Maven pom.xml file
       goals: 'deploy'  # Maven deploy goal to push the WAR file to the repository
       mavenOptions: '-Xmx3072m'  # Optional: Adjust memory if needed
-	  options:
-	    -DskipTests
-	    -DaltDeploymentRepository=azure-artifacts::default::https://pkgs.dev.azure.com/meenar34/Demo/_artifacts/feed/my-artifacts-feed/maven/v1
-	    -Dusername=meena
-	    -Dpassword=$(System.AccessToken)  # System.AccessToken is used for authentication in Azure Pipelines
+	  options: |
+	          -DskipTests
+	          -DaltDeploymentRepository=azure-artifacts::default::https://pkgs.dev.azure.com/meenar34/Demo/_artifacts/feed/my-artifacts-feed/maven/v1
+	          -Dusername=meena
+	          -Dpassword=$(System.AccessToken)  # System.AccessToken is used for authentication in Azure Pipelines
