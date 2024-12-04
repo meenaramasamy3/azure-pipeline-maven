@@ -41,6 +41,13 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+  
+  <distributionManagement>
+    <repository>
+        <id>azure-artifacts</id>
+        <url>https://pkgs.dev.azure.com//meenar34/Demo/_artifacts/feed/my-artifacts-feed/maven/v1</url> <!-- Replace with your Azure Artifacts feed URL -->
+    </repository>
+</distributionManagement>
 
   <build>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
