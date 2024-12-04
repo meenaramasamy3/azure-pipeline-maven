@@ -10,6 +10,7 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
+	# Step 2: Build the WAR file using Maven
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
@@ -20,3 +21,18 @@ steps:
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
+	
+	# Step 3: Deploy the WAR file to Azure Artifacts (Maven feed)
+	- task: Maven@3
+	  displayName: 'Deploy WAR to Azure Artifacts'
+	  inputs:
+	    mavenPomFile: 'pom.xml'  # Path to your Maven pom.xml file
+	    goals: 'deploy'  # Maven deploy goal to push the WAR file to the repository
+	    options: '-DskipTests'  # Optionally skip tests
+	    mavenOptions: '-Xmx3072m'  # Optional: Adjust memory if needed		
+		# Specify the Azure Artifacts Maven feed URL
+		    options: '-DaltDeploymentRepository=azure-artifacts::default::https://pkgs.dev.azure.com/meenar34/Demo/_artifacts/feed/my-artifacts-feed/maven/v1'
+
+		    # Use System Access Token for authentication (most secure method)
+		    options: '-Dusername=meena -Dpassword=$(System.AccessToken)'  # System.AccessToken is used for authentication in Azure Pipelines
+
